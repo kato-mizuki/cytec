@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ProductController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,3 +16,23 @@
 Route::get('/', function () {
     return view('welcome');
 });
+//Route::get('/', 'LoginController@')->name('list');
+
+Route::get('/list', 'ProductController@index')->name('list');
+
+Route::get('/create', 'ProductController@create')->name('create');
+
+Route::post('/list', 'ProductController@store')->name('store');
+
+Route::get('/list/{product}', 'ProductController@show')->name('show');
+
+Route::get('/edit/{product}', 'ProductController@edit')->name('edit');
+
+Route::put('/list/{product}', 'ProductController@update')->name('update');
+
+Route::delete('/list/{product}', 'ProductController@destroy')->name('destroy');
+
+
+Auth::routes();
+
+//Route::get('/home', 'HomeController@index')->name('home');
