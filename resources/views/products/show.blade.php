@@ -16,7 +16,7 @@
             <strong>商品ID:</strong>
             {{$product->id}}
         </div>
-
+         
         <div class="col">
             <strong>メーカー:</strong>
             {{$product->company->name}}

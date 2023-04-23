@@ -10,4 +10,11 @@ class Company extends Model
     {
         return $this->hasMany('App\Models\Product');
     }
+
+    public function getAllCompanies() {
+
+        $companies = $this->all();
+
+        return $companies;
+    }
 }
