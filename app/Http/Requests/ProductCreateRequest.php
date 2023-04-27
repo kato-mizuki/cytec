@@ -28,7 +28,7 @@ class ProductCreateRequest extends FormRequest
             'price' => 'required|numeric|min:0',
             'stock' => 'required|numeric|min:0',
             'comment' => 'string|max:255',
-            'image_path' => 'file|image|mimes:jpeg,png,jpg|max:2048',
+            'image_path' => 'nullable|file|image|mimes:jpeg,png,jpg|max:2048',
             'company_id' => 'required|exists:companies,id'
         ];
     }
@@ -44,8 +44,8 @@ class ProductCreateRequest extends FormRequest
             'stock.min' => '在庫数は0以上で入力してください。',
             'company_id.required' => '企業名は必ず選択してください。',
             'company_id.exists' => '選択した企業が存在しません。',
-            'image_path.file' => 'ファイルをアップロードしてください。',
-            'image_path.image' => '画像を選択してください。',
+            //'image_path.file' => 'ファイルをアップロードしてください。',
+            //'image_path.image' => '画像を選択してください。',
             'image_path.mimes' => '画像ファイルはjpeg,png,jpg形式のみ対応しています。',
             'image_path.max' => 'ファイルサイズは2MB以内にしてください。'
         ];

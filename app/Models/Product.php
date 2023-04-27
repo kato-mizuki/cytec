@@ -59,7 +59,7 @@ class Product extends Model
          $products = Product::all();
 
         }else{
-            
+
          $products = $query->get();
         }
         
@@ -67,11 +67,16 @@ class Product extends Model
     }
 
     //controller記載のstoreメソッド移行
-    public function createNewProduct(Request $request) {
-
-        $filename = $request->image_path->getClientOriginalName();
-
-        $img = $request->image_path->storeAs('public', $filename);
+    public function createNewProduct($request) {
+        //if文でファイルが選択されなかった場合は$img = nullとする
+        //$filename = $request->image_path->getClientOriginalName();
+        //$img = $request->image_path->storeAs('public', $filename);
+        if ($request->hasFile('image_path')) {
+            $filename = $request->image_path->getClientOriginalName();
+            $img = $request->image_path->storeAs('public', $filename);
+        } else {
+            $img = '';
+        }
 
         $product = new Product();
         $product->name = $request->input('name');

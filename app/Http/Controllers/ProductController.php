@@ -65,6 +65,7 @@ class ProductController extends Controller
           return redirect()->route('list');
       
         } catch (\Exception $e) {
+            //dd($e->getMessage()); 
             DB::rollback();
             return back();
         }
@@ -134,7 +135,7 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(Product $product) {
-        
+
         DB::beginTransaction();
 
         try {
