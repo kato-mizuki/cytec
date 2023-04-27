@@ -18,12 +18,12 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
-    {
+    public function index(Request $request) {
         //viewで渡されたrequestの内容を一度、変数に入れて扱う
         $input = $request->all();
 
-        $companies = Company::all();
+        //$companies = Company::all();
+        $companies = (new Company())->getAllCompanies();
         
         $model = new Product();
 
@@ -38,8 +38,7 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
+    public function create() {
         //$companies = Company::all();
         $companies = (new Company())->getAllCompanies();
 
@@ -52,8 +51,8 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ProductCreateRequest $request)
-    {
+    public function store(ProductCreateRequest $request) {
+
         DB::beginTransaction();
 
         try{
@@ -77,8 +76,8 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product)
-    {
+    public function show(Product $product) {
+
         return view('products.show', compact('product'));
     }
 
@@ -88,8 +87,7 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function edit(Product $product)
-    {
+    public function edit(Product $product) {
         //$companies = Company::all();
         $companies = (new Company())->getAllCompanies();
         
@@ -103,8 +101,8 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(ProductCreateRequest $request, Product $product)
-    {
+    public function update(ProductCreateRequest $request, Product $product) {
+
         DB::beginTransaction();
 
         try{
@@ -135,8 +133,8 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
-    {
+    public function destroy(Product $product) {
+        
         DB::beginTransaction();
 
         try {

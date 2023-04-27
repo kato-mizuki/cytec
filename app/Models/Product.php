@@ -54,9 +54,12 @@ class Product extends Model
             $query->where('company_id', 'LIKE', "$companyId");
         }
 
-        if(empty($keyword) && empty($companyId)){
+        if(empty($keyword) && empty($companyId)) {
+
          $products = Product::all();
+
         }else{
+            
          $products = $query->get();
         }
         
