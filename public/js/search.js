@@ -3,7 +3,7 @@ $(function() {
     event.preventDefault(); //フォームの通常の通信をキャンセル
     $.ajax({
       type: "get",
-      URl: "/search",
+      url: "/search",
       datatype: "json",
       data: {
         name: $('#name').val(),
