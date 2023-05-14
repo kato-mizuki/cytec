@@ -20,6 +20,8 @@ Route::get('/', function () {
 
 Route::get('/list', 'ProductController@index')->name('list');
 
+Route::get('/search', 'ProductController@search')->name('search');
+
 Route::get('/create', 'ProductController@create')->name('create');
 
 Route::post('/list', 'ProductController@store')->name('store');

@@ -24,15 +24,24 @@ class ProductController extends Controller
 
         //$companies = Company::all();
         $companies = (new Company())->getAllCompanies();
-        
         $model = new Product();
-
         //メソッドに引数を入れて呼び出す
         $products = $model->getList($input);
 
         return view('products.index', compact('products', 'companies'));
     }
+    public function search(Request $request) {
 
+        $input = $request->all();
+        $companies = (new Company())->getAllCompanies();
+        $model = new Product();
+        $products = $model->getList($input);
+
+        return response()->json([
+            'products' => $products,
+            'companies' => $companies
+        ]);
+    }
     /**
      * Show the form for creating a new resource.
      *

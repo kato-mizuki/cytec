@@ -45,12 +45,10 @@ class Product extends Model
         $query = Product::query();
 
         if(!empty($keyword)) {
-            
             $query->where('name', 'LIKE', "%{$keyword}%");
         }
 
         if(!empty($companyId)) {
-
             $query->where('company_id', 'LIKE', "$companyId");
         }
 

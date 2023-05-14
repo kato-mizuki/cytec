@@ -1,5 +1,10 @@
 @extends('layouts.app')
 
+@section('scripts')
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+    <script src="{{ asset('js/search.js') }}"></script>
+@endsection
+
 @section('content')
 <div class="container">
 
@@ -7,22 +12,22 @@
    <!-- 検索テキスト部分 -->
   <div class="row">
     <div class="col-sm">
-      <form action="{{ route('list') }}" method="GET">
+      <form id="search-form">
         <div class="form-group row">
           <label class="col-sm-2 col-form-label">商品名</label>
             <div class="col-sm-5">
               @csrf
-              <input type="text" class="form-control" name="keyword">
+              <input type="text" class="form-control" name="keyword" id="name">
             </div>
             <div class="col-sm-auto">
-                <input type="submit" class="btn btn-primary" value="検索">
+                <button type="submit" class="btn btn-primary" id="search-btn">検索</button>
             </div>
         </div>
         <!-- 検索セレクトボックス -->
         <div class="form-group row">
             <label class="col-sm-2">メーカー名</label>
             <div class="col-sm-3">
-                <select name="companyId" class="form-control">
+                <select name="companyId" class="form-control" id="company">
                     <option value="">未選択</option>
                     @foreach ($companies as $company)
                     <option value="{{ $company->id }}">{{ $company->name }}</option>
@@ -32,14 +37,14 @@
         </div>
       </form>
     </div>
-  </div>
-
+</div>
+  
   <!-- 新規登録ボタン -->
-
   <a href="{{ route('create') }}"><button style="margin:20px;" class="btn btn-primary">新規登録</button></a>
 
   <!-- 商品テーブル一覧 -->
 
+  <div id="search-result"></div>
   <table class="table">
     <tr class="table-info">
         <th>ID</th>
