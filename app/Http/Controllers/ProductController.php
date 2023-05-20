@@ -31,16 +31,16 @@ class ProductController extends Controller
         return view('products.index', compact('products', 'companies'));
     }
     public function search(Request $request) {
-
+    //dd($request);
         $input = $request->all();
         $companies = (new Company())->getAllCompanies();
         $model = new Product();
         $products = $model->getList($input);
 
         return response()->json([
-            'products' => $products,
-            'companies' => $companies
-        ]);
+             'products' => $products,
+             'companies' => $companies
+         ]);
     }
     /**
      * Show the form for creating a new resource.

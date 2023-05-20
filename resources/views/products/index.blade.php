@@ -7,15 +7,14 @@
    <!-- 検索テキスト部分 -->
   <div class="row">
     <div class="col-sm">
-      <form id="search-form">
+      <!-- <form id="search-form"> -->
         <div class="form-group row">
           <label class="col-sm-2 col-form-label">商品名</label>
             <div class="col-sm-5">
-              @csrf
               <input type="text" class="form-control" name="keyword" id="name">
             </div>
             <div class="col-sm-auto">
-                <button type="submit" class="btn btn-primary" id="search-btn">検索</button>
+                <button class="btn btn-primary" id="search-btn">検索</button>
             </div>
         </div>
         <!-- 検索セレクトボックス -->
@@ -30,7 +29,7 @@
                 </select>
             </div>
         </div>
-      </form>
+      <!-- </form> -->
     </div>
 </div>
   
@@ -38,9 +37,8 @@
   <a href="{{ route('create') }}"><button style="margin:20px;" class="btn btn-primary">新規登録</button></a>
 
   <!-- 商品テーブル一覧 -->
-
-  <div id="search-result"></div>
   <table class="table">
+    <thead>
     <tr class="table-info">
         <th>ID</th>
         <th>商品画像</th>
@@ -52,6 +50,8 @@
         <th>編集</th>
         <th>削除</th>
     </tr>
+    </thead>
+    <tbody id="search-result">
     @foreach ($products as $product)
     <tr>
         <td>{{ $product->id }}</td>
@@ -68,14 +68,13 @@
             @csrf
             @method('DELETE')
             <button type="submit" class="btn btn-secondary" onclick='return confirm("削除しますか？")'>削除</button>
+           </form>
         </td>
     </tr>
     @endforeach
+    </tbody>
   </table>
 </div>
 @endsection
 
-@section('scripts')
-    <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
-    <script src="{{ asset('js/search.js') }}"></script>
-@endsection
+
