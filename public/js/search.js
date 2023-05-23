@@ -21,9 +21,11 @@ $(function() {
       console.log(Array.isArray(data.products));
       var $result = $('#search-result');
       $result.empty(); //結果を一度クリア
+      // console.log(data.companies[1].name);
       $.each(data.products, function (index, product) {
         console.log(data.products);
-        var imagePath = "{{ asset('storage/') }}" + data.products[index].image_path.substr(6);
+        //var imagePath = "http://localhost:8888/storage/coffee.exmple.jpg";
+        var imagePath = "/storage" + data.products[index].image_path.substr(6);
         var html = `
                      <tr>
                        <td>${product.id}</td>
@@ -31,7 +33,7 @@ $(function() {
                        <td>${product.name}</td>
                        <td>${product.price}</td>
                        <td>${product.stock}</td>
-                       <td>${product.company_name}</td>
+                       <td>${data.companies[product.company_id -1].name}</td>
                        <td><a href="{{ route('show', ${product.id}) }}"><button class="btn btn-success">詳細</button></a></td>
                        <td><a href="{{ route('edit', ${product.id}) }}"><button class="btn btn-primary">編集</button></a></td>
                        <td>
