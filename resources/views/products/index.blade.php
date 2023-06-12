@@ -29,6 +29,14 @@
                 </select>
             </div>
         </div>
+        <div>
+          <input type="number" name="min_price" id="minPrice" placeholder="最低価格">
+          <input type="number" name="max_price" id="maxPrice" placeholder="最高価格">
+        </div>
+        <div>
+          <input type="number" name="min_stock" id="minStock" placeholder="最低在庫数">
+          <input type="number" name="max_stock" id="maxStock" placeholder="最高在庫数">
+        </div>
       <!-- </form> -->
     </div>
 </div>
@@ -40,11 +48,11 @@
   <table class="table">
     <thead>
     <tr class="table-info">
-        <th>ID</th>
+        <th>@sortablelink('id', 'ID')</th>
         <th>商品画像</th>
-        <th>商品名</th>
-        <th>価格</th>
-        <th>在庫数</th>
+        <th>@sortablelink('name', '商品名')</th>
+        <th>@sortablelink('price', '価格')</th>
+        <th>@sortablelink('stock', '在庫数')</th>
         <th>メーカー</th>
         <th>詳細表示</th>
         <th>編集</th>
@@ -64,11 +72,12 @@
         <td><a href="{{ route('show', $product->id) }}"><button class="btn btn-success">詳細</button></a></td>
         <td><a href="{{ route('edit', $product->id) }}"><button class="btn btn-primary">編集</button></a></td>
         <td>
-           <form action="{{ route('destroy', $product->id) }}" method="POST">
+           <!-- <form action="{{ route('destroy', $product->id) }}" method="POST"> -->
+            <!-- <form> -->
             @csrf
             @method('DELETE')
-            <button type="submit" class="btn btn-secondary" onclick='return confirm("削除しますか？")'>削除</button>
-           </form>
+            <button data-product_id="{{ $product->id }}" type="submit" class="btn btn-secondary">削除</button>
+           <!-- </form> -->
         </td>
     </tr>
     @endforeach

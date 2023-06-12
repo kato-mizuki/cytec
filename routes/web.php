@@ -32,7 +32,9 @@ Route::get('/edit/{product}', 'ProductController@edit')->name('edit');
 
 Route::put('/list/{product}', 'ProductController@update')->name('update');
 
-Route::delete('/list/{product}', 'ProductController@destroy')->name('destroy');
+// Route::delete('/list/{product}', 'ProductController@destroy')->name('destroy');
+
+Route::post('/delete', 'ProductController@destroy')->name('destroy');
 
 
 Auth::routes();

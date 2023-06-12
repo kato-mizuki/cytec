@@ -30,8 +30,10 @@ class ProductController extends Controller
 
         return view('products.index', compact('products', 'companies'));
     }
+
     public function search(Request $request) {
     //dd($request);
+    //dd($request->all());
         $input = $request->all();
         $companies = (new Company())->getAllCompanies();
         $model = new Product();
@@ -39,7 +41,8 @@ class ProductController extends Controller
 
         return response()->json([
              'products' => $products,
-             'companies' => $companies
+             'companies' => $companies,
+             'price' => $request->minPrice,
          ]);
     }
     /**
@@ -143,19 +146,22 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product) {
-
+    public function destroy(Request $request) {
+    // dd($request);
+    $input = $request->all();
+    // dd($input);
         DB::beginTransaction();
 
         try {
+          $product = Product::find($input['product']); 
           $product->delete();
 
           DB::commit();
+          return response()->json(['success' => true]);
 
-          return redirect()->route('list');
         } catch (\Exception $e) {
             DB::rollback();
-            return back();
+            return response()->json(['success' => false, 'message' => '削除に失敗しました']);
         }
     }
 }
