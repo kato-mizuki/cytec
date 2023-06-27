@@ -11,7 +11,7 @@ class Sale extends Model
     {
         return $this->belongsTo('App\Models\Product');
     }
-
+    /*
     public static function purchase($productId){ //$productsは仮。controllerで記述した変数を入れる
         // dd($productId);
 
@@ -45,4 +45,5 @@ class Sale extends Model
             return ['error' => '購入処理に失敗しました'];
         }
     }
+    */
 }
